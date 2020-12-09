@@ -2,3 +2,15 @@
 
 // What is the sum of the digits of the number 21000?
 
+let num = BigInt( Math.pow(2,1000)).toString()
+// num = num.toString();
+
+let total = 0;
+
+for (let i = 0; i < num.length; i++) {
+    
+    total += parseInt(num.charAt(i));
+}
+
+console.log(num);
+console.log(total);
