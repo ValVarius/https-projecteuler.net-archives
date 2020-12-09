@@ -7,3 +7,25 @@
 // NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-two)
 //  contains 23 letters and 115 (one hundred and fifteen) contains 20 letters. 
 // The use of "and" when writing out numbers is in compliance with British usage.
+
+const numberToEnglish = require('./numberToEnglish.js');
+let toWords = numberToEnglish.numberToEnglish;  
+
+let num = 99;
+
+function count(n) {
+    let clear = n.replace(/ /g,"");
+    return clear;
+}
+
+let total = 0;
+
+for (let i = 1; i <= 1000; i++) {
+    total += count(toWords(i)).length;
+    
+}
+
+console.log(total);
+
+
+
