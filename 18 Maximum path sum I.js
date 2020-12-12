@@ -30,7 +30,8 @@
 // However, Problem 67, is the same challenge with a triangle containing one-hundred rows;
 // it cannot be solved by brute force, and requires a clever method! ;o)
 
-let rows = `75
+let rows = 
+`75
 95 64
 17 47 82
 18 35 87 10
@@ -58,6 +59,8 @@ for (let i = 0; i < rows.length; i++) {
 
 console.log(rows);
 
+
+
 class Node {
   constructor(value) {
     this.value = value;
@@ -77,9 +80,7 @@ class BinarySearchTree {
       this.root = newNode;
       return this;
     }
-    var current = this.root;
-
-    previous = current;
+    
     
 
   }
