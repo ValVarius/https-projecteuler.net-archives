@@ -47,6 +47,8 @@ let rows =
 63 66 04 68 89 53 67 30 73 16 69 87 40 31
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23`;
 
+// Turning this string into an array of arrays of numbers 
+// also equalizing every row adding as many zeroes as need be.
 rows = rows = rows.split("\n");
 
 for (let i = 0; i < rows.length; i++) {
@@ -54,48 +56,44 @@ for (let i = 0; i < rows.length; i++) {
 
   for (let y = 0; y < rows[i].length; y++) {
     rows[i][y] = parseInt(rows[i][y]);
-  }
-}
-
-console.log(rows);
-
-
-
-class Node {
-  constructor(value) {
-    this.value = value;
-    this.previous = null;
-    this.left = null;
-    this.right = null;
-  }
-}
-
-class BinarySearchTree {
-  constructor() {
-    this.root = null;
-  }
-  insert(value, direction) {
-    var newNode = new Node(value);
-    if (this.root === null) {
-      this.root = newNode;
-      return this;
+    if(rows[i].length < rows.length){
+      rows[i].push(0);
     }
-    
-    
-
   }
-  
-  
-  
 }
 
-var tree = new BinarySearchTree();
-tree.insert(10);
-tree.insert(6);
-tree.insert(15);
-tree.insert(3);
-tree.insert(8);
-tree.insert(20);
-// tree.BFS();
+// console.log(rows);
 
-console.log(tree);
+
+
+tri = rows;
+m = rows.length - 1;
+
+
+
+function maxPathSum(tri,m) 
+    { 
+        // loop for bottom-up calculation 
+        for (let i = m - 1; i >= 0; i--) 
+        { 
+            for (let j = 0; j <= i; j++) 
+            { 
+                // for each element, check both 
+                // elements just below the number 
+                // and below right to the number 
+                // add the maximum of them to it 
+                if (tri[i + 1][j] > tri[i + 1][j + 1]) 
+                    tri[i][j] += tri[i + 1][j]; 
+                else
+                    tri[i][j] += tri[i + 1][j + 1]; 
+            } 
+        } 
+      
+        // return the top element 
+        // which stores the maximum sum 
+        return tri[0][0]; 
+    } 
+
+    console.log(maxPathSum(tri, m));
+  
+
