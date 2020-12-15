@@ -19,3 +19,19 @@
 
 // What is the index of the first term in the Fibonacci sequence to contain 1000 digits?
 
+let i = BigInt(2)
+let fib = []; 
+
+fib[0] = BigInt(0);
+fib[1] = BigInt(1);
+
+let result = BigInt(0)
+while (result.toString().length < 1000) {
+  fib[i] = fib[i - BigInt(2)]+ fib[i - BigInt(1)];
+  result = BigInt(fib[i])
+  i++;
+}
+
+// console.log(result);
+
+console.log(i-BigInt(1));
