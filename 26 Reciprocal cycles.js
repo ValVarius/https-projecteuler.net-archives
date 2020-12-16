@@ -39,5 +39,4 @@ for (i = 7; i <= denominator; i += 2){
         p = i;
     }
 }
-console.log("repeats how many numbers:" + max);
 console.log("Solution:" + p);
