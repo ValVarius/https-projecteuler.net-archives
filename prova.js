@@ -1,50 +1,21 @@
-let n = 3; 
-    let array = [] 
-    
-    
-
-const findCombinations = (arr,index,num,reducedNum) =>
-{ 
-    let res = []
-    
-	if (reducedNum < 0) {
-        return res;
-    }
-		 
-
-	if (reducedNum === 0) 
-	{ 
-		for ( let i = 0; i < index; i++) {
-                console.log(arr[i]);
-                res.push(arr[i])
+let total  = 200;
+let ways = 0;
+ 
+for (let a = total; a >= 0; a -= 200) {
+    for (let b = a; b >= 0; b -= 100) {
+        for (let c = b; c >= 0; c -= 50) {
+            for (let d = c; d >= 0; d -= 20) {
+                for (let e = d; e >= 0; e -= 10) {
+                    for (let f = e; f >= 0; f -= 5) {
+                        for (let g = f; g >= 0; g -= 2) {
+                            ways++;
+                        }
+                    }
+                }
+            }
         }
-        // console.log(index + "ARRAY: " +  arr);
-        return res; 
-	} 
+    }
+}
 
-	let prev = (index === 0) ? 1 : arr[index - 1]; 
-	for ( let k = prev; k <= num ; k++) 
-	{ 
-		arr[index] = k; 
-
-		// here we should store the results somehow...
-		res.push([findCombinations(arr, index + 1, num, reducedNum - k, )])
-    } 
-    
-    return res;
-} 
-
-
-
-	
-let results = findCombinations(array, 0, n, n);
-
-console.log(results[0][0][0][0][0]);
-
-	
-    
-    // let results = findCombinations(array, 0, n, n);
-
-    // console.log(results);
-
+console.log(ways);
 

@@ -7,7 +7,10 @@
 // 1×£1 + 1×50p + 2×20p + 1×5p + 1×2p + 3×1p
 // How many different ways can £2 be made using any number of coins?
 
-
+let n = 5; 
+    let array = [] 
+    
+    findCombinations(array, 0, n, n);
 
 const findCombinations = (arr,index,num,reducedNum) =>
 { 
@@ -42,10 +45,7 @@ const findCombinations = (arr,index,num,reducedNum) =>
 	
 
 
-	let n = 5; 
-    let array = [] 
-    
-    findCombinations(array, 0, n, n);
+	
     
     // let results = findCombinations(array, 0, n, n);
 
