@@ -6,58 +6,30 @@
 
 // HINT: Some products can be obtained in more than one way so be sure to only include it once in your sum.
 
-// CALCULATE THE PERMUTATIONS OF THREE NUMBERS IN THE ARRAY FROM1 TO 9
-
-// let list;
-
-// function factorial(x){
-//     // validating the input
-//     x = parseInt(x, 10);
-//     if (isNaN(x)) return 1;
-
-//     // if x below 0, return 1
-//     if (x <= 0) return 1;
-//     // if x above 170, return infinity
-//     if (x > 170) return Infinity;
-//     // calculating the factorial
-//     let y = 1;
-//     for (let i = x; i>0; i--){
-//         y *= i;
-//     }
-//     return y;
-// }
-
-// list = factorial(9) / factorial(6)
-
-// console.log(list);
-
-function* combinations(n, k) { 
-    if (k < 1) {
-      yield [];
-    } else {
-      for (let i = k; i <= n; i++) {
-        for (let tail of combinations(i - 1, k - 1)) {
-          tail.push(i);
-          yield tail;
-        }
-      } 
+function* combinations(n, k) {
+  if (k < 1) {
+    yield [];
+  } else {
+    for (let i = k; i <= n; i++) {
+      for (let tail of combinations(i - 1, k - 1)) {
+        tail.push(i);
+        yield tail;
+      }
     }
   }
-  
-  let result= []
-  Example:
-  for (let combination of combinations(9, 3)) { 
-    // console.log(combination);
-    result.push(combination)
-  }
+}
 
+let firstfactor = [];
+// CALCULATE THE PERMUTATIONS OF THREE NUMBERS IN THE ARRAY FROM1 TO 9
 
-
-// console.log(result);
-
+// theese results will serve as the first factor
+for (let combination of combinations(9, 3)) {
+  firstfactor.push(combination);
+}
+// console.log(firstfactor);
 var permArr = [],
   usedChars = [];
-
+// for each permutation add all its combinations
 function permute(input) {
   var i, ch;
   for (i = 0; i < input.length; i++) {
@@ -70,30 +42,125 @@ function permute(input) {
     input.splice(i, 0, ch);
     usedChars.pop();
   }
-  return permArr
+  return permArr;
 }
-
-// permute(result[0])
-
-// console.log(permArr);
-
-
-// console.log(permute(result[1]));
-// console.log(permute(result[2]));
-// console.log(permute(result[90]));
-// console.log(permute(result));
 
 let list = [];
 
-result.forEach(element => {
-    permArr = []
-    permute(element)
-    list = [...list, ...permArr]
+firstfactor.forEach((element) => {
+  permArr = [];
+  permute(element);
+  list = [...list, ...permArr];
 });
 
-// console.log(list[0]);
-// list = list[0]
+firstfactor = list;
 
-console.log(list[503]);
+// Now let's find all permutations fro the second factor
+let secondfactor = [];
+list = [];
+permArr = [];
+usedChars = [];
+
+for (let combination of combinations(9, 2)) {
+  secondfactor.push(combination);
+}
+
+secondfactor.forEach((element) => {
+  permArr = [];
+  permute(element);
+  list = [...list, ...permArr];
+});
+
+secondfactor = list;
+
+console.log(firstfactor.length);
+console.log(secondfactor.length);
+
+// function to check if all numbers are present
+
+const allThere = (fact1, fact2, prod) => {
+  prod = prod.toString();
+
+  let all = fact1 + fact2 + prod;
+
+  if (all.split("").sort().join("").trim() === "123456789") return true;
+
+  return false;
+};
+
+let sumOfProducts = [];
+let sum = 0;
+
+for (let i = 0; i < firstfactor.length; i++) {
+  for (let y = 0; y < secondfactor.length; y++) {
+    let first = "";
+    let second = "";
+    firstfactor[i].forEach((element) => {
+      first += element.toString();
+    });
+    secondfactor[y].forEach((element) => {
+      second += element.toString();
+    });
+
+    let product = parseInt(first) * parseInt(second);
+
+    if (allThere(first, second, product)) {
+      if (!sumOfProducts.includes(product)) {
+        sumOfProducts.push(product);
+        sum += product;
+      }
+    //   console.log(first, second, product);
+    }
+  }
+}
+
+console.log(sumOfProducts);
+console.log(sum);
 
 
+// Now let's find all permutations for a four number factor
+let factorOfFour = [];
+list = [];
+permArr = [];
+usedChars = [];
+
+for (let combination of combinations(9, 4)) {
+    factorOfFour.push(combination);
+}
+
+factorOfFour.forEach((element) => {
+  permArr = [];
+  permute(element);
+  list = [...list, ...permArr];
+});
+
+factorOfFour = list;
+
+// console.log(factorOfFour.length);
+
+for (let i = 0; i < factorOfFour.length; i++) {
+    for (let y = 1; y < 9; y++) {
+      let first = "";
+      let second = "";
+      factorOfFour[i].forEach((element) => {
+        first += element.toString();
+      });
+      
+        second = y;
+      
+  
+      let product = parseInt(first) * second;
+  
+      if (allThere(first, second, product)) {
+        if (!sumOfProducts.includes(product)) {
+          sumOfProducts.push(product);
+          sum += product;
+        }
+      //   console.log(first, second, product);
+      }
+    }
+  }
+  
+  console.log(sumOfProducts);
+  console.log(sum);
+  
