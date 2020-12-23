@@ -103,3 +103,9 @@ var decimalToFraction = function (_decimal) {
 };
 
 console.log(decimalToFraction(product.toFixed(5)).bottom);
+
+// console.log(process.memoryUsage());
+console.log("RSS ", process.memoryUsage().rss / (1024 * 1024) , " MB");
+console.log("HEAP TOTAL ", process.memoryUsage().heapTotal / (1024 * 1024), " MB");
+console.log("HEAP USED ", process.memoryUsage().heapUsed / (1024 * 1024), " MB");
+console.log("EXTERNAL ", process.memoryUsage().external / (1024 * 1024), " MB");

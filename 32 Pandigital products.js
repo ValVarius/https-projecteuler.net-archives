@@ -109,14 +109,13 @@ for (let i = 0; i < firstfactor.length; i++) {
         sumOfProducts.push(product);
         sum += product;
       }
-    //   console.log(first, second, product);
+      //   console.log(first, second, product);
     }
   }
 }
 
 console.log(sumOfProducts);
 console.log(sum);
-
 
 // Now let's find all permutations for a four number factor
 let factorOfFour = [];
@@ -125,7 +124,7 @@ permArr = [];
 usedChars = [];
 
 for (let combination of combinations(9, 4)) {
-    factorOfFour.push(combination);
+  factorOfFour.push(combination);
 }
 
 factorOfFour.forEach((element) => {
@@ -139,28 +138,39 @@ factorOfFour = list;
 // console.log(factorOfFour.length);
 
 for (let i = 0; i < factorOfFour.length; i++) {
-    for (let y = 1; y < 9; y++) {
-      let first = "";
-      let second = "";
-      factorOfFour[i].forEach((element) => {
-        first += element.toString();
-      });
-      
-        second = y;
-      
-  
-      let product = parseInt(first) * second;
-  
-      if (allThere(first, second, product)) {
-        if (!sumOfProducts.includes(product)) {
-          sumOfProducts.push(product);
-          sum += product;
-        }
-      //   console.log(first, second, product);
+  for (let y = 1; y < 9; y++) {
+    let first = "";
+    let second = "";
+    factorOfFour[i].forEach((element) => {
+      first += element.toString();
+    });
+
+    second = y;
+
+    let product = parseInt(first) * second;
+
+    if (allThere(first, second, product)) {
+      if (!sumOfProducts.includes(product)) {
+        sumOfProducts.push(product);
+        sum += product;
       }
+      //   console.log(first, second, product);
     }
   }
-  
-  console.log(sumOfProducts);
-  console.log(sum);
-  
+}
+
+console.log(sumOfProducts);
+console.log(sum);
+
+console.log("RSS ", process.memoryUsage().rss / (1024 * 1024), " MB");
+console.log(
+  "HEAP TOTAL ",
+  process.memoryUsage().heapTotal / (1024 * 1024),
+  " MB"
+);
+console.log(
+  "HEAP USED ",
+  process.memoryUsage().heapUsed / (1024 * 1024),
+  " MB"
+);
+console.log("EXTERNAL ", process.memoryUsage().external / (1024 * 1024), " MB");

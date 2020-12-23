@@ -61,3 +61,8 @@ function permute(input) {
 permute([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 console.log(permArr);
 console.log(total);
+
+console.log("RSS ", process.memoryUsage().rss / (1024 * 1024) , " MB");
+console.log("HEAP TOTAL ", process.memoryUsage().heapTotal / (1024 * 1024), " MB");
+console.log("HEAP USED ", process.memoryUsage().heapUsed / (1024 * 1024), " MB");
+console.log("EXTERNAL ", process.memoryUsage().external / (1024 * 1024), " MB");
