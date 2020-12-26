@@ -21,67 +21,68 @@ function getPrimes(max) {
   }
   return primes;
 }
-var permArr = [],
-  usedChars = [];
 
-function permute(input) {
-  var i, ch;
-  for (i = 0; i < input.length; i++) {
-    ch = input.splice(i, 1)[0];
-    usedChars.push(ch);
-    if (input.length == 0) {
-      permArr.push(usedChars.slice());
-    }
-    permute(input);
-    input.splice(i, 0, ch);
-    usedChars.pop();
-  }
-  return permArr;
-}
+const rotate = (num) => {
+  let rotation = num;
 
-function isPrime(n)
-{
+  rotation.push(rotation[0]);
+  rotation.shift();
 
-  if (n===1)
-  {
+  return rotation;
+};
+
+function isPrime(n) {
+  if (n === 1) {
     return false;
-  }
-  else if(n === 2)
-  {
+  } else if (n === 2) {
     return true;
-  }else
-  {
-    for(let x = 2; x < n; x++)
-    {
-      if(n % x === 0)
-      {
+  } else {
+    for (let x = 2; x < n; x++) {
+      if (n % x === 0) {
         return false;
       }
     }
-    return true;  
+    return true;
   }
 }
-
 
 let primes = getPrimes(999999);
 
 let len = Object.keys(primes).length;
 // console.log(len);
-let permutations;
+let rotations = []
 let total = 0;
 for (let i = 0; i < len; i++) {
-  let num = [...primes[i].toString()];
-  permutations = permute(num);
-  permArr = [];
+  var num = [...primes[i].toString()];
+
+  let row = []
+
+  for (let i = 0; i < num.length; i++) {
+
+    row = []
+    
+    num = rotate(num);
+    // console.log("before" ,row);
+    
+    for (let j = 0; j < num.length; j++) {
+
+        row.push(num[j]);
+    }
+
+    rotations.push(row);
+    // console.log("after", row);
+    
+  }
+//   console.log("THIS IS THE ROTATIONS:" , rotations);
   let circular = true;
 
-  for (let y = 0; y < permutations.length; y++) {
-    let number = parseInt(permutations[y].join(""));
-    console.log((permutations[0].join("")), "   ",(permutations[y].join("")));
+  for (let y = 0; y < rotations.length; y++) {
+    let number = parseInt(rotations[y].join(""));
+    // console.log(rotations[0].join(""), "   ", rotations[y].join(""));
 
     if (!primes.includes(number)) {
       if (!isPrime(number)) {
-          console.log(number, " is not prime");
+        // console.log(number, " is not prime");
         circular = false;
         break;
       }
@@ -90,9 +91,9 @@ for (let i = 0; i < len; i++) {
 
   if (circular) {
     total++;
-    // console.log(permutations);
+    // console.log(rotations);
   }
-  permutations = [];
+  rotations = [];
 }
 
 console.log("Total: ", total);
