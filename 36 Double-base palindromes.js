@@ -15,7 +15,7 @@ const isPalindromeOnBoth = (num) => {
             isPali = false;
         }
     });
-    num.toString(2).split("").forEach((c,i) => {
+    bi.split("").forEach((c,i) => {
         if(c!== bi[bi.length - 1 - i]) {
             isPali = false;
         }
