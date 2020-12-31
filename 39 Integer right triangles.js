@@ -24,6 +24,7 @@ const getSolutions = (num) => {
 
 let greatest = -1;
 let result;
+// 12 is the smallest triangle with integer sides...
 for (let i = 12; i < 1000; i++) {
   let current = getSolutions(i);
   if (current > greatest) {
@@ -33,3 +34,9 @@ for (let i = 12; i < 1000; i++) {
 }
 
 console.log(`A Perimeter of: ${result} has ${greatest} solutions`);
+
+
+console.log("RSS ", process.memoryUsage().rss / (1024 * 1024) , " MB");
+console.log("HEAP TOTAL ", process.memoryUsage().heapTotal / (1024 * 1024), " MB");
+console.log("HEAP USED ", process.memoryUsage().heapUsed / (1024 * 1024), " MB");
+console.log("EXTERNAL ", process.memoryUsage().external / (1024 * 1024), " MB");
