@@ -17,13 +17,26 @@ const fs = require("fs");
 let names = "";
 try {
   const data = fs.readFileSync("p042_words.txt", "utf8");
-//   console.log(data);
   names = data;
 } catch (err) {
   console.error(err);
 }
-names = names.replace(/"/g, "")
-names = names.split(",")
+names = names.replace(/"/g, "");
+names = names.split(",");
 
-// console.log(names[0].charCodeAt(0)- 64 );
+let total = 0;
 
+for (let i = 0; i < names.length; i++) {
+  let value = 0;
+  for (let y = 0; y < names[i].length; y++) {
+    value += names[i].charCodeAt(y) - 64;
+  }
+  let result = (-1 + Math.sqrt(1 - 4 * (-value * 2))) / 2;
+  //This will always give a negative number???
+  //   let result2 = (-1 - Math.sqrt( 1 - 4 * (-value*2) )  ) / 2;
+  if (Number.isInteger(result)) {
+    total++;
+  }
+}
+
+console.log(total);
