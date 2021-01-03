@@ -32,7 +32,7 @@ for (let i = 0; i < names.length; i++) {
     value += names[i].charCodeAt(y) - 64;
   }
   let result = (-1 + Math.sqrt(1 - 4 * (-value * 2))) / 2;
-  //This will always give a negative number???
+  //This will always give a negative number
   //   let result2 = (-1 - Math.sqrt( 1 - 4 * (-value*2) )  ) / 2;
   if (Number.isInteger(result)) {
     total++;
