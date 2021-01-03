@@ -12,4 +12,18 @@ const isPentagonal = (num) => {
     
 }
 
-isPentagonal(70);
+// isPentagonal(70);
+
+const isHexagonal = (num) => {
+    let result = (-1 * -1 + Math.sqrt(1 - (8 * -num))) / (2 * 2);
+    
+    console.log(result);
+
+    if (Number.isInteger(result)) {
+      return true;
+    }
+  
+    return false;
+  };
+
+  isHexagonal(6)
