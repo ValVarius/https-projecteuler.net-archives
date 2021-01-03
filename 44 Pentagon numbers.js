@@ -12,7 +12,7 @@
 
 const isPentagonal = (num) => {
   let result = (-1 * -1 + Math.sqrt(1 - 4 * 3 * (-2 * num))) / (2 * 3);
-//   console.log(result);
+  //   console.log(result);
   if (Number.isInteger(result)) {
     return true;
   }
@@ -27,30 +27,22 @@ let second;
 
 while (!found) {
   let current = (n * (3 * n - 1)) / 2;
-//   console.log(current);
-  for (let i = 0; i < pentagonals.length; i++) {
-
-    // console.log(i);
-        if(isPentagonal(current - pentagonals[i]) && isPentagonal(current + pentagonals[i])){
-            found = true
-            first = current - pentagonals[i];
-            second = current + pentagonals[i]
-        }
-        else if(isPentagonal(pentagonals[i]- current) && isPentagonal(pentagonals[i]+current)){
-            found = true
-            first = current;
-            second = pentagonals[i]
-        }
-
-
-        
+  for (let i = pentagonals.length; i > 0; i--) {
+    if (
+      isPentagonal(Math.abs(current - pentagonals[i])) &&
+      isPentagonal(current + pentagonals[i])
+    ) {
+      found = true;
+      first = current;
+      second = pentagonals[i];
+    }
   }
-pentagonals.push(current)
-n++;
 
+  pentagonals.push(current);
+  n++;
 }
 
 console.log(first + "   " + second);
 console.log(first + second);
 console.log(first - second);
-// Math.abs(-7.25);
+console.log(Math.abs(second - first));
