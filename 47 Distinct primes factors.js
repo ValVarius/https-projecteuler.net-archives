@@ -45,42 +45,48 @@ const checkUnique = (a) => {
 };
 
 let found = false;
-let num = 646;
+let num = 2 * 3 * 5 *7;
+
 let result;
 
 while (!found) {
-  num++;
-
-  if (!isPrime(num)&&!isPrime(num+1)&&!isPrime(num+2)&&!isPrime(num+3)) {
-    let a = factors(num);
-    // console.log("a");
-    // console.log(a);
-
-    if (checkUnique(a)) {
-      let b = factors(num + 1);
-      // console.log("b");
-      // console.log(b);
-
-      if (checkUnique(b)) {
-        let c = factors(num + 2);
-        // console.log("c");
-        //   console.log(c);
-
-        if (checkUnique(c)) {
-          let d = factors(num + 3);
-          //   console.log("d");
-          //   console.log(d);
-
-          if (checkUnique(d)) {
-            console.log(num);
-            result = num;
-            found = true;
+    num++;
+    // console.log(num);
+  
+    if (!isPrime(num)&&!isPrime(num+1)&&!isPrime(num+2)&&!isPrime(num+3)) {
+      let a = factors(num);
+      // console.log("a");
+      // console.log(a);
+  
+      if (checkUnique(a)) {
+        let b = factors(num + 1);
+        // console.log("b");
+        // console.log(b);
+  
+        if (checkUnique(b)) {
+          let c = factors(num + 2);
+          // console.log("c");
+          //   console.log(c);
+  
+          if (checkUnique(c)) {
+            let d = factors(num + 3);
+            //   console.log("d");
+            //   console.log(d);
+  
+            if (checkUnique(d)) {
+              console.log(num);
+              result = num;
+              found = true;
+            }
+            else num+=3
           }
+          else num+=2
         }
+        else num++;
       }
     }
   }
-}
+  
+  console.log("Result: " + result);
 
-// console.log(num);
-console.log(result);
+  // Result: 134043
